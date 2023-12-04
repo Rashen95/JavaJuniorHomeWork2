@@ -33,8 +33,10 @@ public class TestProcessor {
                     checkTestMethod(method);
                     methods.add(method);
                 } else if (method.isAnnotationPresent(BeforeEach.class)) {
+                    checkTestMethod(method);
                     beforeMethods.add(method);
                 } else if (method.isAnnotationPresent(AfterEach.class)) {
+                    checkTestMethod(method);
                     afterMethods.add(method);
                 }
             }
