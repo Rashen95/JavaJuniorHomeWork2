@@ -43,9 +43,11 @@ public class TestProcessor {
         }
         methods.sort((Comparator.comparingInt(o -> o.getAnnotation(Test.class).order())));
 
-        beforeMethods.forEach(it -> runTest(it, testObj));
-        methods.forEach(it -> runTest(it, testObj));
-        afterMethods.forEach(it -> runTest(it, testObj));
+        methods.forEach(it -> {
+            beforeMethods.forEach(it1 -> runTest(it1, testObj));
+            runTest(it, testObj);
+            afterMethods.forEach(it2 -> runTest(it2, testObj));
+        });
     }
 
     private static void checkTestMethod(Method method) {
